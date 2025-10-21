@@ -1,0 +1,143 @@
+/* src/Auth.css (New Attractive UI) */
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  /* Dark mode background mein halka gradient */
+  background: var(--bg-primary);
+  background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-primary) 100%);
+  color: var(--text-primary);
+}
+
+.auth-wrapper {
+  display: flex;
+  width: 800px; /* Bada container */
+  height: 500px;
+  background-color: var(--bg-secondary);
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  overflow: hidden; /* Taaki border radius kaam kare */
+}
+
+/* --- Left Side Styling --- */
+.auth-branding {
+  width: 50%;
+  padding: 40px;
+  background-color: var(--bg-tertiary); /* Halka alag background */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.auth-logo {
+  color: var(--text-highlight);
+  margin-bottom: 20px;
+}
+
+.auth-title {
+  font-size: 32px;
+  color: var(--text-primary);
+  margin: 0 0 10px 0;
+}
+
+.auth-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* --- Right Side (Form) Styling --- */
+.auth-box {
+  width: 50%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box; /* Padding ko width mein include karega */
+}
+
+.auth-box h2 {
+  color: var(--text-highlight);
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: left;
+}
+
+.input-group {
+  margin-bottom: 20px; /* Zyada spacing */
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px; /* Thode bade inputs */
+  font-size: 14px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Input par focus (click) karne par highlight */
+.input-group input:focus {
+  outline: none;
+  border-color: var(--text-highlight);
+  box-shadow: 0 0 0 3px rgba(0, 191, 255, 0.2); /* Highlight color */
+}
+
+.auth-button {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--btn-primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 10px;
+}
+
+.auth-button:hover {
+  background-color: var(--btn-primary-hover);
+}
+
+.toggle-auth-button {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 20px;
+  text-align: left;
+}
+.toggle-auth-button:hover {
+  color: var(--text-highlight);
+}
+
+.auth-error {
+  color: #e53935; /* Red */
+  font-size: 14px;
+  margin-bottom: 15px;
+  background-color: rgba(229, 57, 53, 0.1);
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}

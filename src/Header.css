@@ -1,0 +1,174 @@
+/* src/Header.css (Modern UI Overhaul) */
+.header {
+  height: 55px; /* Slightly shorter header */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px; /* Adjust padding */
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  /* box-shadow: 0 1px 2px var(--shadow-color); Remove shadow for cleaner look */
+  box-sizing: border-box;
+  color: var(--text-primary);
+  transition: background-color 0.2s, border-color 0.2s;
+  z-index: 10;
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+/* Adjust flex distribution */
+.header-left { flex: 1; }
+.header-center { flex: 3; display: flex; justify-content: center; align-items: center; gap: 10px; }
+.header-right { flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 8px; }
+
+
+.header-title {
+  font-size: 18px; /* Slightly smaller */
+  font-weight: 600;
+  color: var(--text-primary); /* Use primary text color */
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+.title-icon {
+    font-size: 16px;
+    margin-left: 8px;
+}
+
+/* --- New Dropdown Style --- */
+.project-select-wrapper {
+    position: relative; /* For positioning the arrow */
+    display: inline-block;
+}
+.project-dropdown {
+  appearance: none; /* Remove default arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 6px 30px 6px 12px; /* Space for arrow */
+  font-size: 13px;
+  border: 1px solid var(--input-border);
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  border-radius: 6px; /* More rounded */
+  min-width: 180px; /* Min width */
+  max-width: 250px; /* Max width */
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+  text-overflow: ellipsis; /* Show ... if name is too long */
+  white-space: nowrap;
+  overflow: hidden;
+}
+.project-dropdown:hover {
+    border-color: var(--input-focus-border);
+}
+.project-dropdown:focus {
+    outline: none;
+    border-color: var(--input-focus-border);
+    box-shadow: 0 0 0 2px var(--input-focus-shadow);
+}
+.dropdown-arrow {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    pointer-events: none; /* Make arrow non-interactive */
+}
+
+
+/* --- General Icon Button Style --- */
+.icon-button {
+  display: inline-flex; /* Align icon and text */
+  align-items: center;
+  gap: 6px; /* Space between icon and text */
+  padding: 6px 12px; /* Adjust padding */
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  background-color: var(--bg-tertiary); /* Default background */
+  color: var(--text-secondary); /* Default text color */
+}
+.icon-button:hover {
+  background-color: var(--border-color); /* Subtle hover */
+  color: var(--text-primary);
+}
+
+/* Specific Button Colors */
+.new-project-button {
+  background-color: var(--btn-primary);
+  color: var(--text-on-highlight);
+}
+.new-project-button:hover {
+  background-color: var(--btn-primary-hover);
+   color: var(--text-on-highlight);
+}
+
+.save-button-header {
+  background-color: var(--btn-green);
+  color: var(--text-on-highlight);
+}
+.save-button-header:hover {
+  background-color: var(--btn-green-hover);
+   color: var(--text-on-highlight);
+}
+
+
+/* Right side buttons - simpler style */
+.theme-toggle-button-header,
+.logout-button-header {
+  background: transparent;
+  padding: 6px; /* Only padding */
+}
+.theme-toggle-button-header:hover,
+.logout-button-header:hover {
+  background-color: var(--bg-tertiary);
+  color: var(--text-highlight);
+}
+.logout-button-header:hover {
+    color: var(--btn-red); /* Red hover for logout */
+}
+
+
+/* --- Autosave Toggle --- */
+.autosave-toggle {
+  display: flex;
+  align-items: center;
+  margin-right: 8px; /* Less margin */
+  color: var(--text-secondary);
+}
+.autosave-toggle label { /* Label text */
+  font-size: 13px;
+  margin-right: 6px;
+  cursor: pointer;
+  user-select: none; /* Prevent text selection */
+}
+.switch { /* The switch track */
+  position: relative;
+  display: inline-block;
+  width: 34px; /* Smaller switch */
+  height: 18px;
+}
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { /* The track background */
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: var(--border-color);
+  transition: .3s;
+}
+.slider:before { /* The sliding circle */
+  position: absolute;
+  content: "";
+  height: 14px; width: 14px;
+  left: 2px; bottom: 2px;
+  background-color: white;
+  transition: .3s;
+}
+input:checked + .slider { background-color: var(--btn-green); }
+input:focus + .slider { box-shadow: 0 0 1px var(--btn-green); }
+input:checked + .slider:before { transform: translateX(16px); }
+.slider.round { border-radius: 18px; }
+.slider.round:before { border-radius: 50%; }

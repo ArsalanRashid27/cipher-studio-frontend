@@ -1,38 +1,320 @@
-.App {
-  text-align: center;
+/* src/App.css (Poora Code with Responsiveness + Rename Styles) */
+
+/* --- 1. Color Variables --- */
+:root {
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb; /* Lighter secondary */
+  --bg-tertiary: #f3f4f6;  /* Slightly darker tertiary */
+  --border-color: #e5e7eb; /* Softer border */
+  --text-primary: #1f2937; /* Darker text */
+  --text-secondary: #6b7280; /* Muted secondary text */
+  --text-highlight: #3b82f6; /* Blue highlight */
+  --text-on-highlight: #ffffff;
+  --btn-primary: #3b82f6;
+  --btn-primary-hover: #2563eb;
+  --btn-green: #10b981;
+  --btn-green-hover: #059669;
+  --btn-yellow: #f59e0b;
+  --btn-yellow-hover: #d97706;
+  --btn-red: #ef4444;
+  --btn-red-hover: #dc2626;
+  --shadow-color: rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --input-bg: #ffffff;
+  --input-border: #d1d5db;
+  --input-focus-border: #3b82f6;
+  --input-focus-shadow: rgba(59, 130, 246, 0.2);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* --- 2. Dark Mode Variables --- */
+body.theme-dark { /* Apply directly to body */
+  --bg-primary: #111827; /* Dark blue-grey */
+  --bg-secondary: #1f2937;
+  --bg-tertiary: #374151;
+  --border-color: #374151; /* Darker border */
+  --text-primary: #d1d5db; /* Light grey text */
+  --text-secondary: #9ca3af;
+  --text-highlight: #60a5fa; /* Lighter blue */
+  --text-on-highlight: #ffffff;
+  --btn-primary: #60a5fa;
+  --btn-primary-hover: #3b82f6;
+  --btn-green: #34d399;
+  --btn-green-hover: #10b981;
+  --btn-yellow: #facc15;
+  --btn-yellow-hover: #f59e0b;
+  --btn-red: #f87171;
+  --btn-red-hover: #ef4444;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  --input-bg: #1f2937;
+  --input-border: #4b5563;
+  --input-focus-border: #60a5fa;
+  --input-focus-shadow: rgba(96, 165, 250, 0.2);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* --- 3. General App Styling --- */
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  overflow: hidden;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.2s, color 0.2s;
+  font-size: 14px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main-wrapper {
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+.app-container {
+  display: flex;
+  height: calc(100vh - 55px); /* Adjusted for new header height */
+  width: 100vw;
+  background-color: var(--bg-primary);
+}
+
+/* --- 4. File Explorer --- */
+.file-explorer {
+  width: 230px; /* Default width */
+  min-width: 200px;
+  border-right: 1px solid var(--border-color);
+  background-color: var(--bg-secondary);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: background-color 0.2s, border-color 0.2s, width 0.2s ease-in-out; /* Added width transition */
+}
+
+.file-explorer-header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 0 15px;
+  border-bottom: 1px solid var(--border-color);
+  height: 45px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.file-explorer-header h3 {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.file-list {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 5px 0;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color 0.1s ease-in-out;
+  padding-right: 5px;
+}
+
+.file-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background-color: transparent;
+  padding: 8px 15px;
+  text-align: left;
+  font-size: 13px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  flex-grow: 1;
+  width: calc(100% - 30px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 4px;
+  margin: 1px 5px 1px 5px;
+}
+
+.file-icon {
+    flex-shrink: 0;
+    color: var(--text-secondary);
+}
+
+.file-button:hover {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.file-button.active {
+  background-color: var(--text-highlight);
+  color: var(--text-on-highlight);
+  font-weight: 500;
+}
+.file-button.active .file-icon {
+    color: var(--text-on-highlight);
+}
+
+.delete-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: var(--text-secondary);
+  transition: color 0.2s, background-color 0.2s;
+  border-radius: 4px;
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+.file-item:hover .delete-button {
+    opacity: 1;
+}
+
+.delete-button:hover {
+  color: var(--btn-red);
+  background-color: var(--bg-tertiary);
+}
+
+/* --- 5. Add File Container --- */
+.add-file-container {
+  padding: 10px;
+  border-top: 1px solid var(--border-color);
+  background-color: var(--bg-secondary);
+  flex-shrink: 0;
+}
+
+.add-file-container input {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 13px;
+  border: 1px solid var(--input-border);
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 8px;
+}
+.add-file-container input:focus {
+    outline: none;
+    border-color: var(--input-focus-border);
+    box-shadow: 0 0 0 2px var(--input-focus-shadow);
+}
+
+.add-button {
+  width: 100%;
+  padding: 8px 10px;
+  background-color: var(--btn-primary);
   color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.add-button:hover {
+  background-color: var(--btn-primary-hover);
 }
 
-.App-link {
-  color: #61dafb;
+/* --- 6. Editor & Preview Wrapper --- */
+.editor-preview-wrapper {
+    display: flex;
+    flex-grow: 1;
+    height: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.editor-container {
+  flex: 5.5; /* Default split */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border-color);
+  transition: flex 0.2s ease-in-out;
+}
+
+.preview-container {
+  flex: 4.5; /* Default split */
+  height: 100%;
+  background-color: var(--bg-primary);
+  transition: flex 0.2s ease-in-out;
+}
+
+/* Sandpack height fix */
+.editor-container .sp-wrapper,
+.editor-container .sp-editor,
+.preview-container .sp-wrapper,
+.preview-container .sp-preview,
+.preview-container iframe {
+  height: 100% !important;
+  max-height: 100%;
+  border: none !important;
+}
+.editor-container .sp-cm {
+    background-color: var(--bg-primary) !important;
+}
+
+
+/* --- 7. Responsive Design --- */
+
+@media (max-width: 1024px) {
+  .file-explorer {
+    width: 200px;
+    min-width: 180px;
   }
-  to {
-    transform: rotate(360deg);
+  .editor-container {
+     flex: 6; /* Editor gets more space on tablet */
   }
+  .preview-container {
+     flex: 4; /* Preview gets less space */
+  }
+  .header { padding: 0 12px; }
+  .header-center { gap: 8px; }
+  .project-dropdown { min-width: 150px; width: 180px; }
+  .icon-button { padding: 6px 10px; gap: 4px; font-size: 12px; }
+  .header-title { font-size: 16px; }
+}
+
+@media (max-width: 768px) {
+    .file-explorer {
+        width: 180px;
+        min-width: 160px;
+    }
+    .header-center { gap: 6px; }
+    .project-dropdown { min-width: 120px; width: 150px; font-size: 12px; }
+    .icon-button { padding: 5px 8px; font-size: 12px; }
+    .header-title { font-size: 15px; }
+    .title-icon { display: none; }
+    .autosave-toggle label:first-child { display: none; } /* Hide "Autosave" text */
+    .autosave-toggle { margin-right: 5px; }
+}
+
+/* --- 8. Rename Input Styling --- */
+.rename-input {
+  flex-grow: 1; /* Take available space */
+  padding: 6px 10px; /* Match button padding */
+  font-size: 13px;
+  border: 1px solid var(--input-focus-border); /* Highlight border */
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: 1px 5px 1px 5px; /* Match button margin */
+  outline: none;
+  box-shadow: 0 0 0 2px var(--input-focus-shadow);
+}
+
+/* Ensure rename input takes full width in file-item */
+.file-item input.rename-input {
+    width: calc(100% - 10px); /* Adjust width considering margins */
 }
