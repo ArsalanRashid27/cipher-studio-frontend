@@ -15,7 +15,7 @@ import { FaTrash, FaFileCode, FaFolder, FaMoon, FaSun, FaSignOutAlt } from "reac
 import Header from "./Header";
 import Auth from "./Auth";
 
-const API_BASE_URL = "http://localhost:5000/api";
+const API_BASE_URL = "https://cipher-studio-backend.onrender.com/api";
 
 const initialFiles = {
   "/App.js": `export default function App() {
